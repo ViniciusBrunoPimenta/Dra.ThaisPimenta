@@ -448,12 +448,6 @@
                 event.preventDefault();
             }
         }, { passive: false });
-
-        // Prevenir bounce em iOS
-        document.body.addEventListener('touchmove', function(event) {
-            if (event.target.closest('.service-cards')) return;
-            event.preventDefault();
-        }, { passive: false });
     </script>
 </body>
 </html>
