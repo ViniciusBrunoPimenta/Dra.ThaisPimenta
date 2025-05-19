@@ -320,13 +320,17 @@
                 slides.forEach((slide, index) => {
                     slide.classList.toggle('active', index === currentIndex);
                 });
+
+                // Atualizar estado dos botões
+                prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                nextButton.style.opacity = currentIndex === slides.length - 1 ? '0.5' : '1';
             }
 
             // Eventos de toque
             track.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
                 isDragging = true;
-            });
+            }, { passive: true });
 
             track.addEventListener('touchmove', (e) => {
                 if (!isDragging) return;
@@ -336,7 +340,7 @@
                 
                 // Mover o slider junto com o dedo
                 track.style.transform = `translateX(calc(-${currentIndex * 100}% - ${diff}px))`;
-            });
+            }, { passive: true });
 
             track.addEventListener('touchend', (e) => {
                 if (!isDragging) return;
@@ -354,7 +358,7 @@
 
                 isDragging = false;
                 updateSlider();
-            });
+            }, { passive: true });
 
             // Botões de navegação
             prevButton.addEventListener('click', () => {
