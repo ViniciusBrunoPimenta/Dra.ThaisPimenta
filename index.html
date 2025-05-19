@@ -52,15 +52,55 @@
         <div class="hero-content">
             <h1 class="animate-text">Thais Alves Pimenta</h1>
             <p class="animate-text">A estética revela sua melhor versão!</p>
-            <a href="https://wa.me/554398058544" class="cta-button pulse">
-                <i class="fab fa-whatsapp"></i> Marcar Consulta
-            </a>
+            <div class="hero-buttons">
+                <a href="https://wa.me/554398058544" class="cta-button pulse">
+                    <i class="fab fa-whatsapp"></i> Marcar Consulta
+                </a>
+                <a href="#servicos" class="cta-button secondary">
+                    <i class="fas fa-spa"></i> Nossos Serviços
+                </a>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Contador Regressivo -->
+    <section class="countdown-section">
+        <div class="countdown-container">
+            <div class="countdown-content">
+                <div class="countdown-header">
+                    <h2>Oferta Especial</h2>
+                    <p class="countdown-subtitle">Aproveite nossa promoção exclusiva por tempo limitado!</p>
+                </div>
+                <div class="countdown-timer">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">24</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutos</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Segundos</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/554398058544" class="countdown-button">
+                    <i class="fab fa-whatsapp"></i> Agende Agora
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Serviços Cards com Swipe -->
     <section class="services" id="servicos">
-        <h2>Nossos Serviços</h2>
+        <div class="section-header">
+            <h2>Nossos Serviços</h2>
+            <p class="section-subtitle">Descubra os tratamentos que transformam sua beleza</p>
+        </div>
         <div class="services-slider">
             <div class="services-track">
                 <!-- Botox -->
@@ -196,12 +236,16 @@
                             <span>Indicado para todas as peles</span>
                         </div>
                     </div>
-                    <a href="https://wa.me/554398058544" class="depilacao-button">
-                        <i class="fab fa-whatsapp"></i> Agendar Avaliação
-                    </a>
+                    <div class="depilacao-cta">
+                        <a href="https://wa.me/554398058544" class="depilacao-button">
+                            <i class="fab fa-whatsapp"></i> Agendar Avaliação
+                        </a>
+                        <p class="depilacao-note">Primeira sessão com 20% de desconto!</p>
+                    </div>
                 </div>
                 <div class="depilacao-image">
                     <img src="images/teste.png" alt="Depilação a LED" loading="lazy">
+                    <div class="image-overlay"></div>
                 </div>
             </div>
         </div>
@@ -209,34 +253,57 @@
 
     <!-- Contato Section com Formulário -->
     <section class="contact" id="contato-section">
-        <h2>Entre em Contato</h2>
-        <div class="contact-info">
-            <a href="https://wa.me/554398058544" class="contact-item ripple">
-                <i class="fab fa-whatsapp"></i>
-                <span>(43) 99805-8544</span>
-            </a>
-            
-            <a href="mailto:thaisalvespimenta@outlook.com.br" class="contact-item ripple">
-                <i class="fas fa-envelope"></i>
-                <span>thaisalvespimenta@outlook.com.br</span>
-            </a>
-            
-            <a href="https://maps.app.goo.gl/PQyhsjKK5qt94YqJ7" class="contact-item ripple">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Rua Santos, 662 - Londrina</span>
-            </a>
+        <div class="section-header">
+            <h2>Entre em Contato</h2>
+            <p class="section-subtitle">Estamos prontos para cuidar da sua beleza</p>
         </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>WhatsApp</h3>
+                        <a href="https://wa.me/554398058544" class="contact-link">(43) 99805-8544</a>
+                        <p>Atendimento personalizado via WhatsApp</p>
+                    </div>
+                </div>
 
-        <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=100007035408402" class="social-icon ripple">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/thaispimenta.fisio/" class="social-icon ripple">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/554398058544" class="social-icon ripple">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>E-mail</h3>
+                        <a href="mailto:thaisalvespimenta@outlook.com.br" class="contact-link">thaisalvespimenta@outlook.com.br</a>
+                        <p>Envie-nos uma mensagem</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Endereço</h3>
+                        <a href="https://maps.app.goo.gl/PQyhsjKK5qt94YqJ7" class="contact-link">Rua Santos, 662 - Londrina</a>
+                        <p>Visite nossa clínica</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=100007035408402" class="social-icon" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/thaispimenta.fisio/" class="social-icon" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/554398058544" class="social-icon" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -250,236 +317,8 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Intro Animation
-            const introOverlay = document.querySelector('.intro-overlay');
-            
-            // Remove intro after animation completes
-            setTimeout(() => {
-                introOverlay.style.display = 'none';
-            }, 3500);
-
-            // Menu Mobile
-            const menuToggle = document.querySelector('.menu-toggle');
-            const closeMenu = document.querySelector('.close-menu');
-            const navMenu = document.querySelector('.nav-menu');
-            const navOverlay = document.querySelector('.nav-overlay');
-            const menuLinks = document.querySelectorAll('.nav-menu a');
-
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.add('active');
-                navOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-
-            function closeMenuHandler() {
-                navMenu.classList.remove('active');
-                navOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            closeMenu.addEventListener('click', closeMenuHandler);
-            navOverlay.addEventListener('click', closeMenuHandler);
-
-            // Smooth Scroll para links do menu
-            menuLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    
-                    // Fecha o menu após clicar
-                    closeMenuHandler();
-
-                    // Scroll suave para a seção
-                    if (targetId === '#') {
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
-                    } else {
-                        const targetSection = document.querySelector(targetId);
-                        if (targetSection) {
-                            const headerOffset = 70; // Altura do header fixo
-                            const elementPosition = targetSection.getBoundingClientRect().top;
-                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                });
-            });
-
-            // Slider de Serviços
-            const track = document.querySelector('.services-track');
-            const slides = document.querySelectorAll('.service-slide');
-            const indicators = document.querySelectorAll('.indicator');
-            const prevButton = document.querySelector('.slider-nav.prev');
-            const nextButton = document.querySelector('.slider-nav.next');
-            
-            let currentIndex = 0;
-            let startX = 0;
-            let currentX = 0;
-            let isDragging = false;
-
-            // Função para atualizar o slider
-            function updateSlider() {
-                const slideWidth = slides[0].offsetWidth;
-                const gap = 20; // Espaçamento entre slides
-                track.style.transform = `translateX(-${currentIndex * (slideWidth + gap)}px)`;
-                
-                // Atualizar indicadores
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === currentIndex);
-                });
-
-                // Atualizar slides
-                slides.forEach((slide, index) => {
-                    slide.classList.toggle('active', index === currentIndex);
-                });
-
-                // Atualizar estado dos botões
-                prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
-                nextButton.style.opacity = currentIndex === slides.length - 1 ? '0.5' : '1';
-            }
-
-            // Inicializar o slider
-            if (slides.length > 0) {
-                updateSlider();
-            }
-
-            // Eventos de toque
-            if (track) {
-                track.addEventListener('touchstart', (e) => {
-                    startX = e.touches[0].clientX;
-                    isDragging = true;
-                }, { passive: true });
-
-                track.addEventListener('touchmove', (e) => {
-                    if (!isDragging) return;
-                    
-                    currentX = e.touches[0].clientX;
-                    const diff = startX - currentX;
-                    const slideWidth = slides[0].offsetWidth;
-                    const gap = 20;
-                    
-                    // Mover o slider junto com o dedo
-                    track.style.transform = `translateX(calc(-${currentIndex * (slideWidth + gap)}px - ${diff}px))`;
-                }, { passive: true });
-
-                track.addEventListener('touchend', (e) => {
-                    if (!isDragging) return;
-                    
-                    const diff = startX - currentX;
-                    const threshold = 50; // Limiar para mudar de slide
-
-                    if (Math.abs(diff) > threshold) {
-                        if (diff > 0 && currentIndex < slides.length - 1) {
-                            currentIndex++;
-                        } else if (diff < 0 && currentIndex > 0) {
-                            currentIndex--;
-                        }
-                    }
-
-                    isDragging = false;
-                    updateSlider();
-                }, { passive: true });
-            }
-
-            // Botões de navegação
-            if (prevButton && nextButton) {
-                prevButton.addEventListener('click', () => {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        updateSlider();
-                    }
-                });
-
-                nextButton.addEventListener('click', () => {
-                    if (currentIndex < slides.length - 1) {
-                        currentIndex++;
-                        updateSlider();
-                    }
-                });
-            }
-
-            // Indicadores
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateSlider();
-                });
-            });
-
-            // Atualizar o slider quando a janela for redimensionada
-            window.addEventListener('resize', updateSlider);
-
-            // Smooth Scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Back to Top
-            const backToTop = document.querySelector('.back-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTop.classList.add('show');
-                } else {
-                    backToTop.classList.remove('show');
-                }
-            });
-
-            backToTop.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Loading Indicator
-            window.addEventListener('load', () => {
-                document.querySelector('.loading-indicator').classList.add('hidden');
-            });
-
-            // Adicione este código ao seu script existente
-            function handleScrollAnimation() {
-                const sections = document.querySelectorAll('section');
-                
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-                    const windowHeight = window.innerHeight;
-                    
-                    if (sectionTop < windowHeight * 0.75) {
-                        section.classList.add('visible');
-                    }
-                });
-            }
-
-            // Adicione o evento de scroll
-            window.addEventListener('scroll', handleScrollAnimation);
-
-            // Execute uma vez ao carregar a página
-            handleScrollAnimation();
-        });
-
-        // Prevenir zoom em inputs em iOS
-        document.addEventListener('touchstart', function(event) {
-            if (event.touches.length > 1) {
-                event.preventDefault();
-            }
-        }, { passive: false });
-    </script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
