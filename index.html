@@ -328,7 +328,8 @@
             // Função para atualizar o slider
             function updateSlider() {
                 const slideWidth = slides[0].offsetWidth;
-                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                const gap = 20; // Espaçamento entre slides
+                track.style.transform = `translateX(-${currentIndex * (slideWidth + gap)}px)`;
                 
                 // Atualizar indicadores
                 indicators.forEach((indicator, index) => {
@@ -345,54 +346,65 @@
                 nextButton.style.opacity = currentIndex === slides.length - 1 ? '0.5' : '1';
             }
 
-            // Eventos de toque
-            track.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                isDragging = true;
-            }, { passive: true });
-
-            track.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                
-                currentX = e.touches[0].clientX;
-                const diff = startX - currentX;
-                
-                // Mover o slider junto com o dedo
-                track.style.transform = `translateX(calc(-${currentIndex * 100}% - ${diff}px))`;
-            }, { passive: true });
-
-            track.addEventListener('touchend', (e) => {
-                if (!isDragging) return;
-                
-                const diff = startX - currentX;
-                const threshold = 50; // Limiar para mudar de slide
-
-                if (Math.abs(diff) > threshold) {
-                    if (diff > 0 && currentIndex < slides.length - 1) {
-                        currentIndex++;
-                    } else if (diff < 0 && currentIndex > 0) {
-                        currentIndex--;
-                    }
-                }
-
-                isDragging = false;
+            // Inicializar o slider
+            if (slides.length > 0) {
                 updateSlider();
-            }, { passive: true });
+            }
+
+            // Eventos de toque
+            if (track) {
+                track.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                }, { passive: true });
+
+                track.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    
+                    currentX = e.touches[0].clientX;
+                    const diff = startX - currentX;
+                    const slideWidth = slides[0].offsetWidth;
+                    const gap = 20;
+                    
+                    // Mover o slider junto com o dedo
+                    track.style.transform = `translateX(calc(-${currentIndex * (slideWidth + gap)}px - ${diff}px))`;
+                }, { passive: true });
+
+                track.addEventListener('touchend', (e) => {
+                    if (!isDragging) return;
+                    
+                    const diff = startX - currentX;
+                    const threshold = 50; // Limiar para mudar de slide
+
+                    if (Math.abs(diff) > threshold) {
+                        if (diff > 0 && currentIndex < slides.length - 1) {
+                            currentIndex++;
+                        } else if (diff < 0 && currentIndex > 0) {
+                            currentIndex--;
+                        }
+                    }
+
+                    isDragging = false;
+                    updateSlider();
+                }, { passive: true });
+            }
 
             // Botões de navegação
-            prevButton.addEventListener('click', () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    updateSlider();
-                }
-            });
+            if (prevButton && nextButton) {
+                prevButton.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateSlider();
+                    }
+                });
 
-            nextButton.addEventListener('click', () => {
-                if (currentIndex < slides.length - 1) {
-                    currentIndex++;
-                    updateSlider();
-                }
-            });
+                nextButton.addEventListener('click', () => {
+                    if (currentIndex < slides.length - 1) {
+                        currentIndex++;
+                        updateSlider();
+                    }
+                });
+            }
 
             // Indicadores
             indicators.forEach((indicator, index) => {
@@ -401,9 +413,6 @@
                     updateSlider();
                 });
             });
-
-            // Inicializar o slider
-            updateSlider();
 
             // Atualizar o slider quando a janela for redimensionada
             window.addEventListener('resize', updateSlider);
