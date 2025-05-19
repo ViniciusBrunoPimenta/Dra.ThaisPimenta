@@ -6,6 +6,97 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #D2B48C; /* Bege elegante */
+    --secondary-color: #8B7355; /* Bege escuro */
+    --accent-color: #F5DEB3; /* Bege claro */
+    --text-color: #4A4A4A; /* Cinza escuro suave */
+    --light-bg: #FFF8F0; /* Bege muito claro */
+    --white: #FFFFFF;
+    --shadow: 0 4px 20px rgba(210, 180, 140, 0.15);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --gradient-primary: linear-gradient(135deg, #D2B48C, #8B7355);
+    --gradient-accent: linear-gradient(135deg, #F5DEB3, #DEB887);
+}
+
+/* Intro Styles */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--light-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 1s ease-in-out 2.5s forwards;
+}
+
+.intro-content {
+    text-align: center;
+    animation: scaleIn 1s ease-out;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.intro-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
+}
+
+.intro-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out 0.5s forwards;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.intro-text p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: var(--secondary-color);
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out 0.8s forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 html, body {
     height: 100%;
     overflow-y: auto;
@@ -16,8 +107,8 @@ html, body {
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f5f5f5;
+    color: var(--text-color);
+    background-color: var(--light-bg);
     overflow-x: hidden;
     width: 100%;
 }
@@ -28,9 +119,11 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: var(--white);
+    box-shadow: var(--shadow);
     z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .nav-header {
@@ -43,15 +136,22 @@ body {
 .mobile-logo {
     height: 40px;
     width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .menu-toggle {
     background: none;
     border: none;
     font-size: 24px;
-    color: #333;
+    color: var(--primary-color);
     cursor: pointer;
     padding: 5px;
+    transition: var(--transition);
+}
+
+.menu-toggle:hover {
+    color: var(--secondary-color);
+    transform: scale(1.1);
 }
 
 .nav-menu {
@@ -88,63 +188,136 @@ body {
 }
 
 .nav-menu a.active {
-    color: #25D366;
+    color: var(--primary-color);
     font-weight: 500;
 }
 
 /* Hero Section */
 .hero {
     margin-top: 70px;
-    padding: 40px 20px;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/inicio.png');
+    padding: 60px 20px;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/inicio.png');
     background-size: cover;
     background-position: center;
-    color: white;
+    color: var(--white);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(210, 180, 140, 0.3), rgba(139, 115, 85, 0.3));
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0.3; }
 }
 
 .hero-content h1 {
-    font-size: 28px;
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
     margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease-out;
+    color: var(--white);
 }
 
 .hero-content p {
     font-size: 18px;
     margin-bottom: 25px;
+    font-weight: 300;
+    animation: fadeInUp 1s ease-out 0.3s backwards;
+    color: var(--white);
 }
 
 /* Botões */
-.cta-button, .card-button {
-    display: inline-block;
+.cta-button, .card-button, .service-button, .depilacao-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     padding: 15px 30px;
-    background: #25D366;
-    color: white;
+    background: var(--gradient-primary);
+    color: var(--white);
     text-decoration: none;
     border-radius: 30px;
     font-size: 16px;
     font-weight: 500;
     margin: 10px 0;
-    transition: transform 0.3s ease;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(210, 180, 140, 0.3);
+    border: none;
+    position: relative;
+    overflow: hidden;
 }
 
-.cta-button:active, .card-button:active {
+.cta-button::before, .card-button::before, .service-button::before, .depilacao-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.cta-button:hover::before, .card-button:hover::before, .service-button:hover::before, .depilacao-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:active, .card-button:active, .service-button:active, .depilacao-button:active {
     transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(155, 77, 202, 0.2);
+}
+
+.service-button {
+    background: var(--gradient-primary);
+    box-shadow: 0 4px 15px rgba(210, 180, 140, 0.3);
 }
 
 /* Serviços */
 .services {
-    padding: 20px 0;
-    background: #fff;
+    padding: 40px 0;
+    background: var(--white);
     position: relative;
     overflow: hidden;
     width: 100%;
 }
 
 .services h2 {
+    font-family: 'Playfair Display', serif;
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: var(--text-color);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.services h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--gradient-primary);
 }
 
 .services-slider {
@@ -165,14 +338,19 @@ body {
 }
 
 .service-slide {
-    flex: 0 0 85%;
-    width: 85%;
-    background: #fff;
-    border-radius: 15px;
+    background: var(--white);
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
     margin: 0 auto;
     min-width: 85%;
+    transition: var(--transition);
+    border: 1px solid rgba(210, 180, 140, 0.1);
+}
+
+.service-slide:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(210, 180, 140, 0.2);
 }
 
 .service-image {
@@ -197,9 +375,10 @@ body {
 }
 
 .service-info h3 {
-    font-size: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--primary-color);
 }
 
 .service-info p {
@@ -207,23 +386,6 @@ body {
     color: #666;
     margin-bottom: 15px;
     line-height: 1.5;
-}
-
-.service-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background: #25D366;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: 500;
-    transition: transform 0.2s ease;
-}
-
-.service-button:active {
-    transform: scale(0.98);
 }
 
 /* Indicadores de Navegação */
@@ -246,7 +408,7 @@ body {
 }
 
 .indicator.active {
-    background: #25D366;
+    background: var(--primary-color);
 }
 
 /* Botões de Navegação */
@@ -256,10 +418,10 @@ body {
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
-    background: #25D366;
+    background: var(--gradient-primary);
     border: none;
     border-radius: 50%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 10px rgba(155, 77, 202, 0.3);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -280,7 +442,7 @@ body {
 
 .slider-nav:active {
     transform: translateY(-50%) scale(0.95);
-    background: #1fa855;
+    background: var(--secondary-color);
 }
 
 /* Animação de Transição */
@@ -405,7 +567,7 @@ section.visible {
     width: 40px;
     height: 40px;
     border: 4px solid #f3f3f3;
-    border-top: 4px solid #25D366;
+    border-top: 4px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -423,7 +585,7 @@ section.visible {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #25D366;
+    background: var(--gradient-primary);
     color: white;
     border: none;
     cursor: pointer;
@@ -434,6 +596,7 @@ section.visible {
     transform: translateY(100px);
     transition: all 0.3s ease;
     z-index: 1000;
+    box-shadow: 0 4px 15px rgba(155, 77, 202, 0.3);
 }
 
 .back-to-top.show {
@@ -572,8 +735,8 @@ html {
 
 /* Nova Seção de Depilação */
 .depilacao-section {
-    padding: 40px 20px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 60px 20px;
+    background: linear-gradient(135deg, var(--light-bg) 0%, var(--accent-color) 100%);
     position: relative;
     z-index: 1;
     margin-top: 30px;
@@ -585,13 +748,11 @@ html {
 }
 
 .depilacao-content {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    background: white;
+    background: var(--white);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(210, 180, 140, 0.1);
 }
 
 .depilacao-text {
@@ -599,8 +760,9 @@ html {
 }
 
 .depilacao-text h2 {
-    font-size: 28px;
-    color: #333;
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--primary-color);
     margin-bottom: 20px;
     text-align: center;
 }
@@ -629,8 +791,8 @@ html {
 }
 
 .benefit-item i {
-    color: #25D366;
-    font-size: 18px;
+    color: var(--primary-color);
+    font-size: 20px;
 }
 
 .depilacao-button {
@@ -640,7 +802,7 @@ html {
     gap: 10px;
     width: 100%;
     padding: 15px;
-    background: #25D366;
+    background: var(--gradient-primary);
     color: white;
     text-decoration: none;
     border-radius: 30px;
@@ -694,17 +856,19 @@ html {
 
 /* Contato */
 .contact {
-    padding: 40px 20px;
-    background: white;
+    padding: 60px 20px;
+    background: var(--light-bg);
     position: relative;
     z-index: 1;
     margin-top: 30px;
 }
 
 .contact h2 {
+    font-family: 'Playfair Display', serif;
     text-align: center;
     margin-bottom: 30px;
-    font-size: 24px;
+    font-size: 32px;
+    color: var(--primary-color);
 }
 
 .contact-info {
@@ -714,19 +878,21 @@ html {
 }
 
 .contact-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    background: #f8f8f8;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #333;
+    background: var(--white);
+    border-radius: 15px;
+    padding: 20px;
+    transition: var(--transition);
+    border: 1px solid rgba(210, 180, 140, 0.1);
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
 }
 
 .contact-item i {
+    color: var(--primary-color);
     font-size: 24px;
-    margin-right: 15px;
-    color: #25D366;
 }
 
 .social-links {
@@ -737,19 +903,28 @@ html {
 }
 
 .social-icon {
+    background: var(--white);
+    color: var(--primary-color);
+    border: 1px solid rgba(210, 180, 140, 0.1);
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #f8f8f8;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #333;
     font-size: 24px;
     text-decoration: none;
-    transition: transform 0.3s ease;
+    transition: var(--transition);
 }
 
-.social-icon:active {
-    transform: scale(0.95);
+.social-icon:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Animações */
+@keyframes shimmer {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
 }

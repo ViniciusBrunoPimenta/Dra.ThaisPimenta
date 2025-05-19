@@ -15,6 +15,17 @@
     <link rel="stylesheet" href="mobile-style.css">
 </head>
 <body>
+    <!-- Intro Section -->
+    <div class="intro-overlay">
+        <div class="intro-content">
+            <img src="images/logoinicio.png" alt="Logo" class="intro-logo">
+            <div class="intro-text">
+                <h1>Dra. Thais Alves Pimenta</h1>
+                <p>Estética & Bem-estar</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Menu Mobile com Overlay -->
     <nav class="mobile-nav">
         <div class="nav-header">
@@ -241,6 +252,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Intro Animation
+            const introOverlay = document.querySelector('.intro-overlay');
+            
+            // Remove intro after animation completes
+            setTimeout(() => {
+                introOverlay.style.display = 'none';
+            }, 3500);
+
             // Menu Mobile
             const menuToggle = document.querySelector('.menu-toggle');
             const closeMenu = document.querySelector('.close-menu');
