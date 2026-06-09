@@ -200,6 +200,51 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.loading-indicator').classList.add('hidden');
     });
 
+    // Slider de galeria reutilizável
+    function initGallerySlider(slideSel, dotSel, gallerySel) {
+        const slides = document.querySelectorAll(slideSel);
+        const dots   = document.querySelectorAll(dotSel);
+        const gallery = document.querySelector(gallerySel);
+        if (!slides.length) return;
+
+        let idx = 0;
+        let timer = null;
+
+        function show(i) {
+            slides.forEach((s, j) => s.classList.toggle('active', j === i));
+            dots.forEach((d, j) => d.classList.toggle('active', j === i));
+            idx = i;
+        }
+
+        function next() { show((idx + 1) % slides.length); }
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                clearInterval(timer);
+                show(i);
+                timer = setInterval(next, 4000);
+            });
+        });
+
+        if (gallery) {
+            let startX = 0;
+            gallery.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+            gallery.addEventListener('touchend', e => {
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    clearInterval(timer);
+                    show(diff > 0 ? (idx + 1) % slides.length : (idx - 1 + slides.length) % slides.length);
+                    timer = setInterval(next, 4000);
+                }
+            }, { passive: true });
+        }
+
+        timer = setInterval(next, 4000);
+    }
+
+    initGallerySlider('.labial-slide', '.labial-dot', '.labial-gallery');
+    initGallerySlider('.harmonizacao-slide', '.harmonizacao-dot', '.harmonizacao-gallery');
+
     // Scroll Animation
     function handleScrollAnimation() {
         const sections = document.querySelectorAll('section');
