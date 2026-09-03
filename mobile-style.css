@@ -42,8 +42,14 @@
         z-index: 2;
     }
 
+    .hero-kicker {
+        font-size: 15px;
+        letter-spacing: 3px;
+        margin-bottom: 16px;
+    }
+
     .hero-content h1 {
-        font-size: 58px;
+        font-size: 46px;
         margin-bottom: 24px;
     }
 
@@ -489,7 +495,8 @@
     filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
 }
 
-.intro-text h1 {
+.intro-text h1,
+.intro-text .intro-title {
     font-family: 'Playfair Display', serif;
     font-size: 28px;
     color: var(--primary-color);
@@ -658,9 +665,23 @@ body {
     100% { opacity: 0.3; }
 }
 
+.hero-kicker {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    animation: fadeInUp 1s ease-out;
+}
+
 .hero-content h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 32px;
+    font-size: 27px;
+    line-height: 1.25;
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     animation: fadeInUp 1s ease-out;
@@ -2729,5 +2750,143 @@ html {
         font-size: 18px;
         line-height: 1.7;
         text-align: left;
+    }
+}
+/* ===== Tratamentos: conteudo indexavel (mobile-first) ===== */
+.tratamentos-section {
+    padding: 55px 20px;
+    background: var(--light-bg);
+}
+
+.tratamentos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tratamentos-section .section-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.tratamentos-section .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    line-height: 1.3;
+    color: var(--text-color);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.tratamentos-section .section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--gradient-primary);
+}
+
+.tratamentos-section .section-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--secondary-color);
+    margin-top: 16px;
+}
+
+.tratamentos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+}
+
+.tratamento-item {
+    background: var(--white);
+    border-radius: 16px;
+    border-top: 3px solid var(--primary-color);
+    padding: 26px 22px;
+    box-shadow: var(--shadow);
+}
+
+.tratamento-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    line-height: 1.3;
+    color: var(--secondary-color);
+    margin-bottom: 14px;
+}
+
+.tratamento-item p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-color);
+    margin-bottom: 12px;
+}
+
+.tratamento-item p:last-child {
+    margin-bottom: 0;
+}
+
+.tratamentos-cta {
+    text-align: center;
+    margin-top: 34px;
+}
+
+.tratamentos-note {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-color);
+    max-width: 620px;
+    margin: 0 auto 22px;
+}
+
+/* espaco entre os paragrafos extras das secoes existentes */
+.sobre-description + .sobre-description,
+.depilacao-description + .depilacao-description,
+.labial-description + .labial-description,
+.harmonizacao-description + .harmonizacao-description {
+    margin-top: 14px;
+}
+
+@media (min-width: 1024px) {
+    .tratamentos-section {
+        padding: 90px 60px;
+    }
+
+    .tratamentos-section .section-header {
+        margin-bottom: 50px;
+    }
+
+    .tratamentos-section .section-header h2 {
+        font-size: 36px;
+    }
+
+    .tratamentos-section .section-subtitle {
+        font-size: 18px;
+    }
+
+    .tratamentos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .tratamento-item {
+        padding: 34px 32px;
+    }
+
+    .tratamento-item h3 {
+        font-size: 24px;
+    }
+
+    .tratamento-item p {
+        font-size: 16px;
+    }
+
+    .tratamentos-note {
+        font-size: 16px;
     }
 }
