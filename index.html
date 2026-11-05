@@ -51,79 +51,214 @@
     <!-- CSS -->
     <link rel="stylesheet" href="mobile-style.css">
 
-    <!-- Dados estruturados: negócio local em Londrina -->
+    <!-- Abertura so na primeira visita da sessao (e nunca para quem prefere menos movimento) -->
+    <script>
+        try {
+            if (sessionStorage.getItem('intro-vista') || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.documentElement.classList.add('intro-vista');
+            }
+        } catch (e) {}
+    </script>
+
+    <!-- Dados estruturados: negocio local, especialista e catalogo de tratamentos (gerado) -->
+    <!-- gerado:jsonld:inicio -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": ["MedicalBusiness", "HealthAndBeautyBusiness"],
-      "@id": "https://drathaisapimenta.com.br/#clinica",
-      "name": "Dra. Thais Alves Pimenta - Estética e Harmonização Facial",
-      "description": "Clínica de estética avançada em Londrina/PR especializada em harmonização facial, botox, preenchimento labial e tratamentos corporais.",
-      "url": "https://drathaisapimenta.com.br/",
-      "image": [
-        "https://drathaisapimenta.com.br/images/og-preview.jpg",
-        "https://drathaisapimenta.com.br/images/foto-sobre.png",
-        "https://drathaisapimenta.com.br/images/foto-consultorio.png"
-      ],
-      "logo": "https://drathaisapimenta.com.br/images/logoinicio.png",
-      "telephone": "+554396396726",
-      "email": "thaisalvespimenta@outlook.com.br",
-      "priceRange": "$$",
-      "currenciesAccepted": "BRL",
-      "medicalSpecialty": "Physiotherapy",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "R. Dr. Elias Cesar, 55 - Sl 803",
-        "addressLocality": "Londrina",
-        "addressRegion": "PR",
-        "postalCode": "86015-640",
-        "addressCountry": "BR"
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": "Londrina"
-      },
-      "openingHoursSpecification": [
+      "@graph": [
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "08:00",
-          "closes": "18:00"
+          "@type": [
+            "MedicalBusiness",
+            "HealthAndBeautyBusiness"
+          ],
+          "@id": "https://drathaisapimenta.com.br/#clinica",
+          "name": "Dra. Thais Alves Pimenta - Estética e Harmonização Facial",
+          "alternateName": "Dra Thais Pimenta Estética Londrina",
+          "description": "Clínica de estética avançada em Londrina/PR especializada em harmonização facial, botox, preenchimento labial, perfiloplastia e tratamentos corporais.",
+          "url": "https://drathaisapimenta.com.br/",
+          "image": [
+            "https://drathaisapimenta.com.br/images/og-preview.jpg",
+            "https://drathaisapimenta.com.br/images/otimizadas/dra-thais-pimenta.webp",
+            "https://drathaisapimenta.com.br/images/otimizadas/consultorio-londrina.webp"
+          ],
+          "logo": "https://drathaisapimenta.com.br/images/logoinicio.png",
+          "telephone": "+554396396726",
+          "email": "thaisalvespimenta@outlook.com.br",
+          "priceRange": "$$",
+          "currenciesAccepted": "BRL",
+          "medicalSpecialty": "Physiotherapy",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "R. Dr. Elias Cesar, 55 - Sl 803",
+            "addressLocality": "Londrina",
+            "addressRegion": "PR",
+            "postalCode": "86015-640",
+            "addressCountry": "BR"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Londrina"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:00",
+              "closes": "18:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "08:00",
+              "closes": "12:00"
+            }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/thaispimenta.fisio/",
+            "https://www.facebook.com/profile.php?id=100007035408402"
+          ],
+          "founder": {
+            "@id": "https://drathaisapimenta.com.br/#dra-thais"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Tratamentos",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Botox (toxina botulínica)",
+                  "url": "https://drathaisapimenta.com.br/botox-londrina/"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Preenchimento labial com ácido hialurônico",
+                  "url": "https://drathaisapimenta.com.br/preenchimento-labial-londrina/"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Harmonização facial",
+                  "url": "https://drathaisapimenta.com.br/harmonizacao-facial-londrina/"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Perfiloplastia (harmonização do perfil)",
+                  "url": "https://drathaisapimenta.com.br/perfiloplastia-londrina/"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Botox para sorriso gengival",
+                  "url": "https://drathaisapimenta.com.br/botox-sorriso-gengival-londrina/"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Criolipólise",
+                  "url": "https://drathaisapimenta.com.br/criolipolise-londrina/"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Lipo enzimática",
+                  "url": "https://drathaisapimenta.com.br/lipo-enzimatica-londrina/"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Ultraformer (ultrassom microfocado)",
+                  "url": "https://drathaisapimenta.com.br/ultraformer-londrina/"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Terapia capilar",
+                  "url": "https://drathaisapimenta.com.br/terapia-capilar-londrina/"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Depilação a LED",
+                  "url": "https://drathaisapimenta.com.br/depilacao-led-londrina/"
+                }
+              }
+            ]
+          }
         },
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Saturday",
-          "opens": "08:00",
-          "closes": "12:00"
+          "@type": "Person",
+          "@id": "https://drathaisapimenta.com.br/#dra-thais",
+          "name": "Thais Alves Pimenta",
+          "honorificPrefix": "Dra.",
+          "jobTitle": "Fisioterapeuta dermatofuncional",
+          "image": "https://drathaisapimenta.com.br/images/otimizadas/dra-thais-pimenta-retrato.webp",
+          "worksFor": {
+            "@id": "https://drathaisapimenta.com.br/#clinica"
+          },
+          "sameAs": [
+            "https://www.instagram.com/thaispimenta.fisio/"
+          ],
+          "knowsAbout": [
+            "Botox",
+            "Preenchimento labial",
+            "Harmonização facial",
+            "Perfiloplastia",
+            "Sorriso gengival",
+            "Criolipólise",
+            "Lipo enzimática",
+            "Ultraformer",
+            "Terapia capilar",
+            "Depilação a LED"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://drathaisapimenta.com.br/#site",
+          "url": "https://drathaisapimenta.com.br/",
+          "name": "Dra Thais Pimenta Estética Londrina",
+          "inLanguage": "pt-BR",
+          "publisher": {
+            "@id": "https://drathaisapimenta.com.br/#clinica"
+          }
         }
-      ],
-      "sameAs": [
-        "https://www.instagram.com/thaispimenta.fisio/",
-        "https://www.facebook.com/profile.php?id=100007035408402"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Tratamentos",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Botox (toxina botulínica)" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Preenchimento labial" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Harmonização facial" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Botox para sorriso gengival" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Criolipólise" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lipo enzimática" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ultraformer" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Terapia capilar" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Depilação a LED" } }
-        ]
-      }
+      ]
     }
     </script>
+    <!-- gerado:jsonld:fim -->
 </head>
 <body>
     <!-- Intro Section -->
     <div class="intro-overlay">
         <div class="intro-content">
-            <img src="images/logoinicio.png" alt="Logo" class="intro-logo">
+            <img src="images/logoinicio.png" alt="" class="intro-logo" width="154" height="53">
             <div class="intro-text">
                 <div class="intro-title">Dra. Thais Alves Pimenta</div>
                 <p>Estética & Bem-estar</p>
@@ -132,18 +267,18 @@
     </div>
 
     <!-- Menu Mobile com Overlay -->
-    <nav class="mobile-nav">
+    <nav class="mobile-nav" aria-label="Menu principal">
         <div class="nav-header">
-            <img src="images/logoinicio.png" alt="Logo" class="mobile-logo">
-            <button class="menu-toggle" aria-label="Menu">
-                <i class="fas fa-bars"></i>
+            <img src="images/logoinicio.png" alt="Dra. Thais Pimenta Estética" class="mobile-logo" width="154" height="53">
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
         </div>
 
         <div class="nav-overlay"></div>
-        <div class="nav-menu">
+        <div class="nav-menu" id="menu-principal">
             <button class="close-menu" aria-label="Fechar menu">
-                <i class="fas fa-times"></i>
+                <i class="fas fa-times" aria-hidden="true"></i>
             </button>
             <a href="#" class="active">Início</a>
             <a href="#sobre-section">Sobre</a>
@@ -151,6 +286,7 @@
             <a href="#tratamentos-section">Tratamentos</a>
             <a href="#labial-section">Preenchimento</a>
             <a href="#harmonizacao-section">Harmonização</a>
+            <a href="#avaliacoes">Avaliações</a>
             <a href="#contato-section">Contato</a>
         </div>
     </nav>
@@ -178,12 +314,12 @@
         <div class="sobre-container">
             <div class="sobre-content">
                 <div class="sobre-image-wrap">
-                    <img src="images/foto-sobre.png" alt="Dra. Thais Alves Pimenta" class="sobre-photo">
+                    <img src="images/otimizadas/dra-thais-pimenta.webp" alt="Dra. Thais Alves Pimenta, fisioterapeuta dermatofuncional em Londrina" class="sobre-photo" width="1200" height="1597" loading="lazy" decoding="async">
                     <div class="sobre-badge">
                         <i class="fas fa-award"></i>
                         <span>+10 anos de experiência</span>
                     </div>
-                    <img src="images/foto-produto.png" alt="Dra. Thais com produto" class="sobre-photo-2">
+                    <img src="images/otimizadas/dra-thais-pimenta-produto.webp" alt="Dra. Thais com produto" class="sobre-photo-2" width="900" height="1198" loading="lazy" decoding="async">
                 </div>
                 <div class="sobre-text">
                     <span class="sobre-label">Conheça a especialista</span>
@@ -219,8 +355,10 @@
         </div>
     </section>
 
-    <!-- Contador Regressivo -->
-    <section class="countdown-section">
+    <!-- Oferta com contador regressivo.
+         Para ativar uma campanha: preencha data-oferta-fim (ex.: "2026-12-20T23:59:59") e o texto abaixo.
+         Sem data, ou com a data vencida, a secao fica escondida (script.js). -->
+    <section class="countdown-section" data-oferta-fim="" hidden>
         <div class="countdown-container">
             <div class="countdown-content">
                 <div class="countdown-header">
@@ -229,7 +367,7 @@
                 </div>
                 <div class="countdown-timer">
                     <div class="countdown-item">
-                        <span class="countdown-number" id="days">32</span>
+                        <span class="countdown-number" id="days">00</span>
                         <span class="countdown-label">Dias</span>
                     </div>
                     <span class="countdown-separator">:</span>
@@ -266,96 +404,114 @@
                 <!-- Botox -->
                 <div class="service-slide">
                     <div class="service-image">
-                        <img src="Serviços/Botox.jpg" alt="Botox" loading="lazy">
+                        <img src="images/otimizadas/botox-londrina.webp" alt="Antes e depois de botox na testa" width="800" height="800" loading="lazy" decoding="async">
                     </div>
                     <div class="service-info">
                         <h3>Botox</h3>
                         <p>Tratamento para reduzir rugas e linhas de expressão, resultando em uma aparência mais jovem e relaxada.</p>
-                        <a href="https://wa.me/554396396726" class="service-button">
-                            <i class="fab fa-whatsapp"></i> Agendar
-                        </a>
+                        <div class="service-actions">
+                            <a href="https://wa.me/554396396726?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20botox." class="service-button">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </a>
+                            <a href="botox-londrina/" class="saiba-mais"><span>Saiba mais</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Criolipolise -->
                 <div class="service-slide">
                     <div class="service-image">
-                        <img src="Serviços/crio.jpg" alt="Criolipolise" loading="lazy">
+                        <img src="images/otimizadas/criolipolise-londrina.webp" alt="Antes e depois de criolipólise no abdômen" width="800" height="1001" loading="lazy" decoding="async">
                     </div>
                     <div class="service-info">
                         <h3>Criolipólise</h3>
                         <p>Procedimento não invasivo que utiliza congelamento controlado para eliminar gordura localizada.</p>
-                        <a href="https://wa.me/554396396726" class="service-button">
-                            <i class="fab fa-whatsapp"></i> Agendar
-                        </a>
+                        <div class="service-actions">
+                            <a href="https://wa.me/554396396726?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20criolip%C3%B3lise." class="service-button">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </a>
+                            <a href="criolipolise-londrina/" class="saiba-mais"><span>Saiba mais</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Botox Sorriso Gengival -->
                 <div class="service-slide">
                     <div class="service-image">
-                        <img src="Serviços/b.jpg" alt="Botox Sorriso Gengival" loading="lazy">
+                        <img src="images/otimizadas/botox-sorriso-gengival-londrina.webp" alt="Antes e depois de botox para sorriso gengival" width="800" height="800" loading="lazy" decoding="async">
                     </div>
                     <div class="service-info">
                         <h3>Botox Sorriso Gengival</h3>
                         <p>Reduza a exposição da gengiva ao sorrir com nosso tratamento de Botox, proporcionando um sorriso mais harmonioso.</p>
-                        <a href="https://wa.me/554396396726" class="service-button">
-                            <i class="fab fa-whatsapp"></i> Agendar
-                        </a>
+                        <div class="service-actions">
+                            <a href="https://wa.me/554396396726?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20botox%20para%20sorriso%20gengival." class="service-button">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </a>
+                            <a href="botox-sorriso-gengival-londrina/" class="saiba-mais"><span>Saiba mais</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Terapia Capilar -->
                 <div class="service-slide">
                     <div class="service-image">
-                        <img src="Serviços/terapia.jpg" alt="Terapia Capilar" loading="lazy">
+                        <img src="images/otimizadas/terapia-capilar-londrina.webp" alt="Antes e depois de terapia capilar" width="800" height="800" loading="lazy" decoding="async">
                     </div>
                     <div class="service-info">
                         <h3>Terapia Capilar</h3>
                         <p>Tratamentos capilares para regeneração dos fios, melhorando a circulação sanguínea e a saúde do cabelo.</p>
-                        <a href="https://wa.me/554396396726" class="service-button">
-                            <i class="fab fa-whatsapp"></i> Agendar
-                        </a>
+                        <div class="service-actions">
+                            <a href="https://wa.me/554396396726?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20terapia%20capilar." class="service-button">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </a>
+                            <a href="terapia-capilar-londrina/" class="saiba-mais"><span>Saiba mais</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Lipo Enzimática -->
                 <div class="service-slide">
                     <div class="service-image">
-                        <img src="Serviços/en.jpg" alt="Lipo Enzimática" loading="lazy">
+                        <img src="images/otimizadas/lipo-enzimatica-londrina.webp" alt="Antes e depois de lipo enzimática no abdômen" width="800" height="1001" loading="lazy" decoding="async">
                     </div>
                     <div class="service-info">
                         <h3>Lipo Enzimática</h3>
                         <p>Tratamento que utiliza enzimas para dissolver a gordura localizada de forma não invasiva e indolor.</p>
-                        <a href="https://wa.me/554396396726" class="service-button">
-                            <i class="fab fa-whatsapp"></i> Agendar
-                        </a>
+                        <div class="service-actions">
+                            <a href="https://wa.me/554396396726?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20lipo%20enzim%C3%A1tica." class="service-button">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </a>
+                            <a href="lipo-enzimatica-londrina/" class="saiba-mais"><span>Saiba mais</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Ultraformer -->
                 <div class="service-slide">
                     <div class="service-image">
-                        <img src="Serviços/ultra.jpg" alt="Ultraformer" loading="lazy">
+                        <img src="images/otimizadas/ultraformer-londrina.webp" alt="Antes e depois de Ultraformer no rosto" width="800" height="1422" loading="lazy" decoding="async">
                     </div>
                     <div class="service-info">
                         <h3>Ultraformer</h3>
                         <p>Tratamento não invasivo que utiliza ultrassom para estimular a produção de colágeno e melhorar a textura da pele.</p>
-                        <a href="https://wa.me/554396396726" class="service-button">
-                            <i class="fab fa-whatsapp"></i> Agendar
-                        </a>
+                        <div class="service-actions">
+                            <a href="https://wa.me/554396396726?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20Ultraformer." class="service-button">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </a>
+                            <a href="ultraformer-londrina/" class="saiba-mais"><span>Saiba mais</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Indicadores de Navegação -->
             <div class="slider-indicators">
-                <button class="indicator active" data-index="0"></button>
-                <button class="indicator" data-index="1"></button>
-                <button class="indicator" data-index="2"></button>
-                <button class="indicator" data-index="3"></button>
-                <button class="indicator" data-index="4"></button>
-                <button class="indicator" data-index="5"></button>
+                <button class="indicator active" data-index="0" aria-label="Ver serviço 1: Botox"></button>
+                <button class="indicator" data-index="1" aria-label="Ver serviço 2: Criolipólise"></button>
+                <button class="indicator" data-index="2" aria-label="Ver serviço 3: Botox sorriso gengival"></button>
+                <button class="indicator" data-index="3" aria-label="Ver serviço 4: Terapia capilar"></button>
+                <button class="indicator" data-index="4" aria-label="Ver serviço 5: Lipo enzimática"></button>
+                <button class="indicator" data-index="5" aria-label="Ver serviço 6: Ultraformer"></button>
             </div>
 
             <!-- Botões de Navegação -->
@@ -410,14 +566,15 @@
                         </div>
                     </div>
                     <div class="depilacao-cta">
-                        <a href="https://wa.me/554396396726" class="depilacao-button">
+                        <a href="https://wa.me/554396396726?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20depila%C3%A7%C3%A3o%20a%20LED." class="depilacao-button">
                             <i class="fab fa-whatsapp"></i> Agendar Avaliação
                         </a>
                         <p class="depilacao-note">Primeira sessão com 20% de desconto!</p>
+                        <a href="depilacao-led-londrina/" class="saiba-mais"><span>Tudo sobre depilação a LED</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="depilacao-image">
-                    <img src="images/image.png" alt="Dra. Thais - Depilação a LED" loading="lazy">
+                    <img src="images/otimizadas/depilacao-led-londrina.webp" alt="Dra. Thais Pimenta com o aparelho de depilação a LED" width="1024" height="1536" loading="lazy" decoding="async">
                     <div class="image-overlay"></div>
                 </div>
             </div>
@@ -431,24 +588,24 @@
                 <div class="labial-gallery">
                     <div class="labial-slider">
                         <div class="labial-slide labial-slide--contain active">
-                            <img src="Serviços/labial/image.png" alt="Preenchimento Labial - Antes e Depois" loading="lazy">
+                            <img src="images/otimizadas/preenchimento-labial-antes-depois-1.webp" alt="Preenchimento labial - antes e depois (caso 1)" width="1000" height="1000" loading="lazy" decoding="async">
                         </div>
                         <div class="labial-slide labial-slide--contain">
-                            <img src="Serviços/labial/image copy.png" alt="Preenchimento Labial - Antes e Depois" loading="lazy">
+                            <img src="images/otimizadas/preenchimento-labial-antes-depois-2.webp" alt="Preenchimento labial - antes e depois (caso 2)" width="1000" height="1262" loading="lazy" decoding="async">
                         </div>
                         <div class="labial-slide labial-slide--contain">
-                            <img src="Serviços/labial/image copy 2.png" alt="Preenchimento Labial - Antes e Depois" loading="lazy">
+                            <img src="images/otimizadas/preenchimento-labial-antes-depois-3.webp" alt="Preenchimento labial - antes e depois (caso 3)" width="1000" height="1000" loading="lazy" decoding="async">
                         </div>
                         <div class="labial-slide labial-slide--contain">
-                            <img src="Serviços/labial/image copy 4.png" alt="Preenchimento Labial - Antes e Depois" loading="lazy">
+                            <img src="images/otimizadas/preenchimento-labial-antes-depois-4.webp" alt="Preenchimento labial - antes e depois (caso 4)" width="720" height="1280" loading="lazy" decoding="async">
                         </div>
                     </div>
                     <span class="labial-badge">Antes &amp; Depois</span>
                     <div class="labial-dots">
-                        <button class="labial-dot active" data-index="0"></button>
-                        <button class="labial-dot" data-index="1"></button>
-                        <button class="labial-dot" data-index="2"></button>
-                        <button class="labial-dot" data-index="3"></button>
+                        <button class="labial-dot active" data-index="0" aria-label="Ver caso 1"></button>
+                        <button class="labial-dot" data-index="1" aria-label="Ver caso 2"></button>
+                        <button class="labial-dot" data-index="2" aria-label="Ver caso 3"></button>
+                        <button class="labial-dot" data-index="3" aria-label="Ver caso 4"></button>
                     </div>
                 </div>
                 <div class="labial-text">
@@ -489,10 +646,11 @@
                         </div>
                     </div>
                     <div class="depilacao-cta">
-                        <a href="https://wa.me/554396396726" class="depilacao-button">
+                        <a href="https://wa.me/554396396726?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20preenchimento%20labial." class="depilacao-button">
                             <i class="fab fa-whatsapp"></i> Agendar Avaliação
                         </a>
                         <p class="depilacao-note">Avaliação gratuita!</p>
+                        <a href="preenchimento-labial-londrina/" class="saiba-mais"><span>Ver mais antes e depois e dúvidas</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -543,25 +701,26 @@
                         </div>
                     </div>
                     <div class="depilacao-cta">
-                        <a href="https://wa.me/554396396726" class="depilacao-button">
+                        <a href="https://wa.me/554396396726?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20harmoniza%C3%A7%C3%A3o%20facial." class="depilacao-button">
                             <i class="fab fa-whatsapp"></i> Agendar Avaliação
                         </a>
                         <p class="depilacao-note">Avaliação gratuita!</p>
+                        <a href="harmonizacao-facial-londrina/" class="saiba-mais"><span>Como funciona o planejamento</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="harmonizacao-gallery">
                     <div class="harmonizacao-slider">
                         <div class="harmonizacao-slide harmonizacao-slide--contain active">
-                            <img src="Serviços/Hamonização/image.png" alt="Harmonização Facial - Antes e Depois" loading="lazy">
+                            <img src="images/otimizadas/harmonizacao-facial-antes-depois-1.webp" alt="Harmonização facial - antes e depois (caso 1)" width="1000" height="1000" loading="lazy" decoding="async">
                         </div>
                         <div class="harmonizacao-slide harmonizacao-slide--contain">
-                            <img src="Serviços/Hamonização/image copy.png" alt="Harmonização Facial - Antes e Depois" loading="lazy">
+                            <img src="images/otimizadas/harmonizacao-facial-antes-depois-2.webp" alt="Harmonização facial - antes e depois (caso 2)" width="1000" height="1250" loading="lazy" decoding="async">
                         </div>
                     </div>
                     <span class="labial-badge">Antes &amp; Depois</span>
                     <div class="harmonizacao-dots">
-                        <button class="harmonizacao-dot active" data-index="0"></button>
-                        <button class="harmonizacao-dot" data-index="1"></button>
+                        <button class="harmonizacao-dot active" data-index="0" aria-label="Ver caso 1"></button>
+                        <button class="harmonizacao-dot" data-index="1" aria-label="Ver caso 2"></button>
                     </div>
                 </div>
             </div>
@@ -597,6 +756,7 @@
                         instala de forma progressiva entre o terceiro e o décimo quinto dia, e a duração média
                         é de quatro a seis meses, variando conforme o metabolismo de cada pessoa.
                     </p>
+                    <a href="botox-londrina/" class="saiba-mais"><span>Botox em Londrina: guia completo</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </article>
 
                 <article class="tratamento-item">
@@ -615,6 +775,7 @@
                         O efeito aparece em poucos dias e dura, em média, de três a quatro meses nas primeiras
                         aplicações, tendendo a se prolongar com as manutenções seguintes.
                     </p>
+                    <a href="botox-sorriso-gengival-londrina/" class="saiba-mais"><span>Saiba mais sobre sorriso gengival</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </article>
 
                 <article class="tratamento-item">
@@ -635,6 +796,7 @@
                         precisa: não existe protocolo igual para todo mundo, e parte do trabalho é alinhar
                         expectativa de resultado antes de começar.
                     </p>
+                    <a href="criolipolise-londrina/" class="saiba-mais"><span>Saiba mais sobre criolipólise</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </article>
 
                 <article class="tratamento-item">
@@ -653,6 +815,7 @@
                         Como toda técnica injetável, depende de avaliação prévia: histórico de saúde, uso de
                         medicamentos e objetivo real são discutidos antes da primeira aplicação.
                     </p>
+                    <a href="lipo-enzimatica-londrina/" class="saiba-mais"><span>Saiba mais sobre lipo enzimática</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </article>
 
                 <article class="tratamento-item">
@@ -671,6 +834,7 @@
                         O resultado é progressivo: a pele responde ao estímulo de colágeno ao longo de 60 a 90
                         dias, e uma sessão bem indicada sustenta o efeito por meses.
                     </p>
+                    <a href="ultraformer-londrina/" class="saiba-mais"><span>Saiba mais sobre Ultraformer</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </article>
 
                 <article class="tratamento-item">
@@ -690,6 +854,22 @@
                         Atende homens e mulheres, tanto em quadros de queda mais recente quanto na manutenção
                         de um couro cabeludo saudável a longo prazo.
                     </p>
+                    <a href="terapia-capilar-londrina/" class="saiba-mais"><span>Saiba mais sobre terapia capilar</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                </article>
+
+                <article class="tratamento-item">
+                    <h3>Perfiloplastia</h3>
+                    <p>
+                        A perfiloplastia harmoniza o rosto visto de lado: avalia como nariz, lábios, queixo e
+                        mandíbula se relacionam e usa ácido hialurônico em pontos planejados para equilibrar o
+                        perfil, sem cirurgia e sem afastamento da rotina.
+                    </p>
+                    <p>
+                        Muitas vezes o que incomoda no nariz é, na verdade, um queixo que projeta pouco. Por
+                        isso o planejamento olha o conjunto antes de qualquer aplicação. A Dra. Thais é
+                        pós-graduada na técnica.
+                    </p>
+                    <a href="perfiloplastia-londrina/" class="saiba-mais"><span>Saiba mais sobre perfiloplastia</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </article>
             </div>
 
@@ -705,59 +885,62 @@
         </div>
     </section>
 
-    <!-- Depoimentos -->
-    <section class="testimonials-section" id="depoimentos-section">
-        <div class="section-header">
-            <h2>O que dizem nossas pacientes</h2>
-            <p class="section-subtitle">Resultados reais, histórias verdadeiras</p>
-        </div>
-        <div class="testimonials-container">
-            <div class="testimonial-card">
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+    <!-- Avaliacoes do Google (gerado por ferramentas/gerar-paginas.mjs a partir de ferramentas/conteudo.mjs) -->
+    <!-- gerado:avaliacoes:inicio -->
+    <section class="reviews-section" id="avaliacoes" data-avaliacoes aria-labelledby="avaliacoes-titulo">
+        <div class="reviews-inner">
+            <div class="reviews-head">
+                <div>
+                    <span class="reviews-eyebrow">Quem já é paciente</span>
+                    <h2 id="avaliacoes-titulo">O que dizem nossas pacientes</h2>
                 </div>
-                <p class="testimonial-text">"Fiz Botox com a Dra. Thais e o resultado foi incrível! Atendimento super cuidadoso, ela explicou tudo direitinho e o resultado ficou muito natural. Recomendo demais!"</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">A</div>
-                    <div class="author-info">
-                        <strong>Ana Paula S.</strong>
-                        <span>Botox – Harmonização Facial</span>
+                <div class="reviews-summary">
+                    <span class="reviews-g" aria-hidden="true"><i class="fab fa-google"></i></span>
+                    <span class="reviews-score" data-avaliacoes-nota hidden></span>
+                    <div>
+                        <strong>Avaliações no Google</strong>
+                        <span class="reviews-summary-meta" data-avaliacoes-meta>Comentários reais de pacientes</span>
                     </div>
                 </div>
             </div>
 
-            <div class="testimonial-card">
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">"A criolipólise superou minhas expectativas! Perdi medidas nas áreas que mais me incomodavam. A Dra. Thais é muito atenciosa e o ambiente da clínica é super aconchegante."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">M</div>
-                    <div class="author-info">
-                        <strong>Mariana L.</strong>
-                        <span>Criolipólise</span>
-                    </div>
-                </div>
+            <div class="reviews-grid" data-avaliacoes-lista>
+            <figure class="review-card">
+                <div class="review-stars" role="img" aria-label="Nota 5 de 5"><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i></div>
+                <blockquote class="review-text"><p>Trabalha com naturalidade, produtos de qualidades e a Dra... sem palavras!!!</p></blockquote>
+                <figcaption class="review-author">
+                    <span class="review-avatar" aria-hidden="true"><i class="fab fa-google"></i></span>
+                    <span><strong>Paciente da clínica</strong><span class="review-meta">Avaliação no Google</span></span>
+                </figcaption>
+            </figure>
+            <figure class="review-card">
+                <div class="review-stars" role="img" aria-label="Nota 5 de 5"><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i></div>
+                <blockquote class="review-text"><p>Uma clínica linda, acolhedora e conduzida por uma pessoa incrível.</p></blockquote>
+                <figcaption class="review-author">
+                    <span class="review-avatar" aria-hidden="true">M</span>
+                    <span><strong>Paciente da clínica</strong><span class="review-meta">Avaliação no Google</span></span>
+                </figcaption>
+            </figure>
+            <figure class="review-card">
+                <div class="review-stars" role="img" aria-label="Nota 5 de 5"><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i></div>
+                <blockquote class="review-text"><p>Ótima profissional, super recomendo , preços acessíveis.</p></blockquote>
+                <figcaption class="review-author">
+                    <span class="review-avatar" aria-hidden="true"><i class="fab fa-google"></i></span>
+                    <span><strong>Paciente da clínica</strong><span class="review-meta">Avaliação no Google</span></span>
+                </figcaption>
+            </figure>
             </div>
 
-            <div class="testimonial-card">
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">"Faço depilação a LED há 6 meses e a diferença é enorme. Sem dor, sem irritação e com resultados duradouros. Melhor investimento que já fiz para a minha pele!"</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">C</div>
-                    <div class="author-info">
-                        <strong>Camila R.</strong>
-                        <span>Depilação a LED</span>
-                    </div>
-                </div>
+            <div class="reviews-actions">
+                <a class="btn-outline" href="https://www.google.com/maps/search/?api=1&query=Dra%20Thais%20Pimenta%20Est%C3%A9tica%20Londrina" target="_blank" rel="noopener" data-link-google>
+                    <i class="fab fa-google" aria-hidden="true"></i> Ver todas as avaliações
+                </a>
+                <a class="link-secundario" href="https://www.google.com/maps/search/?api=1&query=Dra%20Thais%20Pimenta%20Est%C3%A9tica%20Londrina" target="_blank" rel="noopener" data-link-avaliar>Já é paciente? Deixe sua avaliação</a>
             </div>
+            <p class="reviews-fonte">Fonte: Google Maps, perfil &ldquo;Dra Thais Pimenta Estética Londrina&rdquo;.</p>
         </div>
     </section>
+    <!-- gerado:avaliacoes:fim -->
 
     <!-- Contato Section -->
     <section class="contact" id="contato-section">
@@ -855,7 +1038,7 @@
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <img src="images/logoinicio.png" alt="Logo Dra. Thais Pimenta" class="footer-logo">
+                <img src="images/logoinicio.png" alt="Logo Dra. Thais Pimenta" class="footer-logo" width="154" height="53" loading="lazy">
                 <p>Estética &amp; Bem-estar com cuidado humanizado.</p>
                 <div class="footer-social">
                     <a href="https://www.instagram.com/thaispimenta.fisio/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -875,10 +1058,26 @@
                 <a href="#">Início</a>
                 <a href="#sobre-section">Sobre a Dra.</a>
                 <a href="#servicos">Serviços</a>
-            <a href="#tratamentos-section">Tratamentos</a>
-                <a href="#depilacao-section">Depilação a LED</a>
+                <a href="#tratamentos-section">Tratamentos</a>
+                <a href="#avaliacoes">Avaliações</a>
                 <a href="#contato-section">Contato</a>
             </div>
+
+            <!-- gerado:rodape-tratamentos:inicio -->
+            <div class="footer-links">
+                <h4>Tratamentos</h4>
+                <a href="botox-londrina/">Botox</a>
+                <a href="preenchimento-labial-londrina/">Preenchimento labial</a>
+                <a href="harmonizacao-facial-londrina/">Harmonização facial</a>
+                <a href="perfiloplastia-londrina/">Perfiloplastia</a>
+                <a href="botox-sorriso-gengival-londrina/">Sorriso gengival</a>
+                <a href="criolipolise-londrina/">Criolipólise</a>
+                <a href="lipo-enzimatica-londrina/">Lipo enzimática</a>
+                <a href="ultraformer-londrina/">Ultraformer</a>
+                <a href="terapia-capilar-londrina/">Terapia capilar</a>
+                <a href="depilacao-led-londrina/">Depilação a LED</a>
+            </div>
+    <!-- gerado:rodape-tratamentos:fim -->
 
             <div class="footer-contact">
                 <h4>Contato</h4>
@@ -895,18 +1094,19 @@
         </div>
     </footer>
 
-    <!-- Loading Indicator -->
-    <div class="loading-indicator">
-        <div class="spinner"></div>
-    </div>
+    <!-- WhatsApp sempre visivel -->
+    <a class="whatsapp-float" href="https://wa.me/554396396726?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Thais." aria-label="Agendar pelo WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i><span>Agendar pelo WhatsApp</span>
+    </a>
 
     <!-- Back to Top Button -->
     <button class="back-to-top" aria-label="Voltar ao topo">
-        <i class="fas fa-arrow-up"></i>
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
-    <script src="main.js"></script>
+    <script src="script.js" defer></script>
+    <script src="main.js" defer></script>
+    <script src="avaliacoes.js" defer></script>
 </body>
 </html>

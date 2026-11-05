@@ -1,274 +1,168 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Intro Animation
+// Script compartilhado pela home e pelas paginas de tratamento.
+// Cada bloco checa se os elementos existem, porque nem toda pagina tem tudo.
+document.addEventListener('DOMContentLoaded', function () {
+    // Abertura: so na primeira visita da sessao (ver script inline no <head>)
     const introOverlay = document.querySelector('.intro-overlay');
-    
-    // Remove intro after animation completes
-    setTimeout(() => {
-        introOverlay.style.display = 'none';
-    }, 3500);
+    if (introOverlay) {
+        try { sessionStorage.setItem('intro-vista', '1'); } catch (e) { /* modo privado */ }
+        setTimeout(() => { introOverlay.style.display = 'none'; }, 1900);
+    }
 
-    // Menu Mobile
+    // Menu mobile
     const menuToggle = document.querySelector('.menu-toggle');
     const closeMenu = document.querySelector('.close-menu');
     const navMenu = document.querySelector('.nav-menu');
     const navOverlay = document.querySelector('.nav-overlay');
-    const menuLinks = document.querySelectorAll('.nav-menu a');
 
-    menuToggle.addEventListener('click', () => {
+    function abrirMenu() {
+        if (!navMenu) return;
         navMenu.classList.add('active');
-        navOverlay.classList.add('active');
+        if (navOverlay) navOverlay.classList.add('active');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
-    });
+    }
 
-    function closeMenuHandler() {
+    function fecharMenu() {
+        if (!navMenu) return;
         navMenu.classList.remove('active');
-        navOverlay.classList.remove('active');
+        if (navOverlay) navOverlay.classList.remove('active');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
     }
 
-    closeMenu.addEventListener('click', closeMenuHandler);
-    navOverlay.addEventListener('click', closeMenuHandler);
+    if (menuToggle) menuToggle.addEventListener('click', abrirMenu);
+    if (closeMenu) closeMenu.addEventListener('click', fecharMenu);
+    if (navOverlay) navOverlay.addEventListener('click', fecharMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharMenu(); });
 
-    // Smooth Scroll para links do menu
-    menuLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            
-            // Fecha o menu após clicar
-            closeMenuHandler();
-
-            // Scroll suave para a seção
-            if (targetId === '#') {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            } else {
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    const headerOffset = 70; // Altura do header fixo
-                    const elementPosition = targetSection.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
+    // Links do menu: fecham o menu; a rolagem suave e o desconto do header fixo
+    // ficam com o CSS (scroll-behavior: smooth + scroll-margin-top nas secoes).
+    document.querySelectorAll('.nav-menu a').forEach((link) => {
+        link.addEventListener('click', fecharMenu);
     });
 
-    // Slider de Serviços
+    // Slider de Servicos
     const track = document.querySelector('.services-track');
     const slides = document.querySelectorAll('.service-slide');
     const indicators = document.querySelectorAll('.indicator');
     const prevButton = document.querySelector('.slider-nav.prev');
     const nextButton = document.querySelector('.slider-nav.next');
-    
-    let currentIndex = 0;
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
 
-    // Função para atualizar o slider
-    function updateSlider() {
-        const slideWidth = slides[0].offsetWidth;
-        const gap = 20; // Espaçamento entre slides
-        track.style.transform = `translateX(-${currentIndex * (slideWidth + gap)}px)`;
-        
-        // Atualizar indicadores
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === currentIndex);
-        });
+    if (track && slides.length) {
+        const GAP = 20;
+        let currentIndex = 0;
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
 
-        // Atualizar slides
-        slides.forEach((slide, index) => {
-            slide.classList.toggle('active', index === currentIndex);
-        });
+        function updateSlider() {
+            const slideWidth = slides[0].offsetWidth;
+            track.style.transform = `translateX(-${currentIndex * (slideWidth + GAP)}px)`;
+            indicators.forEach((indicator, index) => {
+                const ativo = index === currentIndex;
+                indicator.classList.toggle('active', ativo);
+                indicator.setAttribute('aria-current', ativo ? 'true' : 'false');
+            });
+            slides.forEach((slide, index) => slide.classList.toggle('active', index === currentIndex));
+            if (prevButton) prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
+            if (nextButton) nextButton.style.opacity = currentIndex === slides.length - 1 ? '0.5' : '1';
+        }
 
-        // Atualizar estado dos botões
-        prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
-        nextButton.style.opacity = currentIndex === slides.length - 1 ? '0.5' : '1';
-    }
-
-    // Inicializar o slider
-    if (slides.length > 0) {
         updateSlider();
-    }
 
-    // Eventos de toque
-    if (track) {
         track.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
+            currentX = startX;
             isDragging = true;
         }, { passive: true });
 
         track.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
-            
             currentX = e.touches[0].clientX;
             const diff = startX - currentX;
             const slideWidth = slides[0].offsetWidth;
-            const gap = 20;
-            
-            // Mover o slider junto com o dedo
-            track.style.transform = `translateX(calc(-${currentIndex * (slideWidth + gap)}px - ${diff}px))`;
+            track.style.transform = `translateX(calc(-${currentIndex * (slideWidth + GAP)}px - ${diff}px))`;
         }, { passive: true });
 
-        track.addEventListener('touchend', (e) => {
+        track.addEventListener('touchend', () => {
             if (!isDragging) return;
-            
             const diff = startX - currentX;
-            const threshold = 50; // Limiar para mudar de slide
-
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0 && currentIndex < slides.length - 1) {
-                    currentIndex++;
-                } else if (diff < 0 && currentIndex > 0) {
-                    currentIndex--;
-                }
+            if (Math.abs(diff) > 50) {
+                if (diff > 0 && currentIndex < slides.length - 1) currentIndex++;
+                else if (diff < 0 && currentIndex > 0) currentIndex--;
             }
-
             isDragging = false;
             updateSlider();
         }, { passive: true });
-    }
 
-    // Botões de navegação
-    if (prevButton && nextButton) {
-        prevButton.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateSlider();
-            }
-        });
-
-        nextButton.addEventListener('click', () => {
-            if (currentIndex < slides.length - 1) {
-                currentIndex++;
-                updateSlider();
-            }
-        });
-    }
-
-    // Indicadores
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            currentIndex = index;
-            updateSlider();
-        });
-    });
-
-    // Atualizar o slider quando a janela for redimensionada
-    window.addEventListener('resize', updateSlider);
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // Back to Top
-    const backToTop = document.querySelector('.back-to-top');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTop.classList.add('show');
-        } else {
-            backToTop.classList.remove('show');
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                if (currentIndex > 0) { currentIndex--; updateSlider(); }
+            });
         }
-    });
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                if (currentIndex < slides.length - 1) { currentIndex++; updateSlider(); }
+            });
+        }
 
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => { currentIndex = index; updateSlider(); });
         });
-    });
 
-    // Loading Indicator
-    window.addEventListener('load', () => {
-        document.querySelector('.loading-indicator').classList.add('hidden');
-    });
+        window.addEventListener('resize', updateSlider);
+    }
 
-    // Slider de galeria reutilizável
+    // Voltar ao topo
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+        const atualizarBotao = () => backToTop.classList.toggle('show', window.scrollY > 300);
+        window.addEventListener('scroll', atualizarBotao, { passive: true });
+        atualizarBotao();
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+
+    // Slider de galeria reutilizavel (antes e depois)
     function initGallerySlider(slideSel, dotSel, gallerySel) {
-        const slides = document.querySelectorAll(slideSel);
-        const dots   = document.querySelectorAll(dotSel);
+        const gSlides = document.querySelectorAll(slideSel);
+        const dots = document.querySelectorAll(dotSel);
         const gallery = document.querySelector(gallerySel);
-        if (!slides.length) return;
+        if (!gSlides.length) return;
 
         let idx = 0;
         let timer = null;
 
         function show(i) {
-            slides.forEach((s, j) => s.classList.toggle('active', j === i));
-            dots.forEach((d, j) => d.classList.toggle('active', j === i));
+            gSlides.forEach((s, j) => s.classList.toggle('active', j === i));
+            dots.forEach((d, j) => {
+                d.classList.toggle('active', j === i);
+                d.setAttribute('aria-current', j === i ? 'true' : 'false');
+            });
             idx = i;
         }
 
-        function next() { show((idx + 1) % slides.length); }
+        function next() { show((idx + 1) % gSlides.length); }
+        function reiniciar() { clearInterval(timer); timer = setInterval(next, 4000); }
 
         dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                clearInterval(timer);
-                show(i);
-                timer = setInterval(next, 4000);
-            });
+            dot.addEventListener('click', () => { show(i); reiniciar(); });
         });
 
         if (gallery) {
-            let startX = 0;
-            gallery.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-            gallery.addEventListener('touchend', e => {
-                const diff = startX - e.changedTouches[0].clientX;
+            let gStartX = 0;
+            gallery.addEventListener('touchstart', (e) => { gStartX = e.touches[0].clientX; }, { passive: true });
+            gallery.addEventListener('touchend', (e) => {
+                const diff = gStartX - e.changedTouches[0].clientX;
                 if (Math.abs(diff) > 50) {
-                    clearInterval(timer);
-                    show(diff > 0 ? (idx + 1) % slides.length : (idx - 1 + slides.length) % slides.length);
-                    timer = setInterval(next, 4000);
+                    show(diff > 0 ? (idx + 1) % gSlides.length : (idx - 1 + gSlides.length) % gSlides.length);
+                    reiniciar();
                 }
             }, { passive: true });
         }
 
-        timer = setInterval(next, 4000);
+        reiniciar();
     }
 
     initGallerySlider('.labial-slide', '.labial-dot', '.labial-gallery');
     initGallerySlider('.harmonizacao-slide', '.harmonizacao-dot', '.harmonizacao-gallery');
-
-    // Scroll Animation
-    function handleScrollAnimation() {
-        const sections = document.querySelectorAll('section');
-        
-        sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (sectionTop < windowHeight * 0.75) {
-                section.classList.add('visible');
-            }
-        });
-    }
-
-    // Adicione o evento de scroll
-    window.addEventListener('scroll', handleScrollAnimation);
-
-    // Execute uma vez ao carregar a página
-    handleScrollAnimation();
 });
-
-// Prevenir zoom em inputs em iOS
-document.addEventListener('touchstart', function(event) {
-    if (event.touches.length > 1) {
-        event.preventDefault();
-    }
-}, { passive: false }); 
