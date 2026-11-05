@@ -3,12 +3,144 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://drathaisapimenta.com.br/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://drathaisapimenta.com.br/images/og-preview.jpg</image:loc>
-      <image:title>Botox, preenchimento e harmonizacao facial em Londrina - Dra. Thais Pimenta</image:title>
+      <image:title>Botox, preenchimento e harmonização facial em Londrina - Dra. Thais Pimenta</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/dra-thais-pimenta.webp</image:loc>
+      <image:title>Dra. Thais Alves Pimenta, fisioterapeuta dermatofuncional em Londrina</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://drathaisapimenta.com.br/botox-londrina/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/botox-londrina.webp</image:loc>
+      <image:title>Antes e depois de botox na testa: linhas de expressão suavizadas em paciente da Dra. Thais Pimenta</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://drathaisapimenta.com.br/preenchimento-labial-londrina/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/preenchimento-labial-antes-depois-2.webp</image:loc>
+      <image:title>Antes e depois de preenchimento labial com ácido hialurônico feito pela Dra. Thais Pimenta em Londrina</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/preenchimento-labial-antes-depois-1.webp</image:loc>
+      <image:title>Antes e depois de preenchimento labial em Londrina (caso 1)</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/preenchimento-labial-antes-depois-3.webp</image:loc>
+      <image:title>Antes e depois de preenchimento labial em Londrina (caso 2)</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/preenchimento-labial-antes-depois-4.webp</image:loc>
+      <image:title>Antes e depois de preenchimento labial em Londrina (caso 3)</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/preenchimento-labial-antes-depois-5.webp</image:loc>
+      <image:title>Antes e depois de preenchimento labial em Londrina (caso 4)</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/preenchimento-labial-antes-depois-6.webp</image:loc>
+      <image:title>Antes e depois de preenchimento labial em Londrina (caso 5)</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://drathaisapimenta.com.br/harmonizacao-facial-londrina/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/consultorio-londrina.webp</image:loc>
+      <image:title>Dra. Thais Pimenta no consultório em Londrina com o planejamento facial de uma paciente</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/harmonizacao-facial-antes-depois-2.webp</image:loc>
+      <image:title>Antes e depois de harmonização facial em Londrina (caso 1)</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/harmonizacao-facial-antes-depois-1.webp</image:loc>
+      <image:title>Antes e depois de harmonização facial em Londrina (caso 2)</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://drathaisapimenta.com.br/perfiloplastia-londrina/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/dra-thais-pimenta-produto.webp</image:loc>
+      <image:title>Dra. Thais Pimenta, pós-graduada em perfiloplastia, na clínica em Londrina</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://drathaisapimenta.com.br/botox-sorriso-gengival-londrina/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/botox-sorriso-gengival-londrina.webp</image:loc>
+      <image:title>Antes e depois de botox para sorriso gengival: menos gengiva aparente ao sorrir</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://drathaisapimenta.com.br/criolipolise-londrina/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/criolipolise-londrina.webp</image:loc>
+      <image:title>Antes e depois de criolipólise no abdômen e flancos em paciente da Dra. Thais Pimenta</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://drathaisapimenta.com.br/lipo-enzimatica-londrina/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/lipo-enzimatica-londrina.webp</image:loc>
+      <image:title>Antes e depois de lipo enzimática no abdômen em paciente da Dra. Thais Pimenta</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://drathaisapimenta.com.br/ultraformer-londrina/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/ultraformer-londrina.webp</image:loc>
+      <image:title>Antes e depois de Ultraformer no rosto: contorno mais firme em paciente da Dra. Thais Pimenta</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://drathaisapimenta.com.br/terapia-capilar-londrina/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/terapia-capilar-londrina.webp</image:loc>
+      <image:title>Antes e depois de terapia capilar: mais densidade no topo da cabeça em paciente da Dra. Thais Pimenta</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://drathaisapimenta.com.br/depilacao-led-londrina/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drathaisapimenta.com.br/images/otimizadas/depilacao-led-londrina.webp</image:loc>
+      <image:title>Dra. Thais Pimenta com o aparelho de depilação a LED na clínica em Londrina</image:title>
     </image:image>
   </url>
 </urlset>

@@ -1,41 +1,45 @@
-// Contador Regressivo — encerra em 30/06/2026 às 23:59:59
-function startCountdown() {
-    const endDate = new Date('2026-06-30T23:59:59');
+// Oferta com contador regressivo.
+//
+// A data de termino fica no proprio HTML, no atributo data-oferta-fim da secao
+// .countdown-section (ex.: data-oferta-fim="2026-12-20T23:59:59").
+// Sem data, ou com a data ja vencida, a secao continua escondida: nada de
+// contador zerado "00:00:00:00" para a visitante.
+function iniciarOferta() {
+    const secao = document.querySelector('.countdown-section[data-oferta-fim]');
+    if (!secao) return;
 
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = endDate.getTime() - now;
+    const fim = new Date(secao.getAttribute('data-oferta-fim'));
+    if (isNaN(fim.getTime())) return;
 
-        const daysEl    = document.getElementById('days');
-        const hoursEl   = document.getElementById('hours');
-        const minutesEl = document.getElementById('minutes');
-        const secondsEl = document.getElementById('seconds');
+    const campos = {
+        days: document.getElementById('days'),
+        hours: document.getElementById('hours'),
+        minutes: document.getElementById('minutes'),
+        seconds: document.getElementById('seconds'),
+    };
+    if (Object.values(campos).some((c) => !c)) return;
 
-        if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+    const dois = (n) => String(n).padStart(2, '0');
+    let timer = null;
 
-        if (distance <= 0) {
-            daysEl.textContent    = '00';
-            hoursEl.textContent   = '00';
-            minutesEl.textContent = '00';
-            secondsEl.textContent = '00';
-            return;
+    function atualizar() {
+        const restante = fim.getTime() - Date.now();
+        if (restante <= 0) {
+            secao.hidden = true;
+            clearInterval(timer);
+            return false;
         }
-
-        const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        daysEl.textContent    = days.toString().padStart(2, '0');
-        hoursEl.textContent   = hours.toString().padStart(2, '0');
-        minutesEl.textContent = minutes.toString().padStart(2, '0');
-        secondsEl.textContent = seconds.toString().padStart(2, '0');
+        campos.days.textContent = dois(Math.floor(restante / 86400000));
+        campos.hours.textContent = dois(Math.floor((restante % 86400000) / 3600000));
+        campos.minutes.textContent = dois(Math.floor((restante % 3600000) / 60000));
+        campos.seconds.textContent = dois(Math.floor((restante % 60000) / 1000));
+        return true;
     }
 
-    updateCountdown();
-    return setInterval(updateCountdown, 1000);
+    if (atualizar()) {
+        secao.hidden = false;
+        timer = setInterval(atualizar, 1000);
+    }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    startCountdown();
-});
+document.addEventListener('DOMContentLoaded', iniciarOferta);
